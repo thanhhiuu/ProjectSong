@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import icons from '../ultil/icon';
 import * as actions from '../store-redux/actions/index';
 import { useNavigate } from 'react-router-dom';
+import SelectionItems from './SelectionItems';
 const Chill = ({ data, title }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,12 +23,12 @@ const Chill = ({ data, title }) => {
 
     return () => clearInterval(intervalId);
   }, [data]);
-  const handlerPlaylist = (item) => {
-    dispatch(actions.setPlaylist(item?.encodeId));
-    const path = item?.link?.split('.')[0];
-    console.log(path, 'oathhh');
-    navigate(path);
-  };
+  // const handlerPlaylist = (item) => {
+  //   dispatch(actions.setPlaylist(item?.encodeId));
+  //   const path = item?.link?.split('.')[0];
+  //   console.log(path, 'oathhh');
+  //   navigate(path);
+  // };
   return (
     <>
       <div className="flex max-w-[98%] justify-between m-auto mt-4 mb-6  items-center">
@@ -41,33 +42,7 @@ const Chill = ({ data, title }) => {
 
       <div className="w-full h-full flex  items-center mt-5 justify-center">
         {data?.slice(currentIndex, currentIndex + 5).map((item) => {
-          return (
-            <div
-              key={item?.encodeId}
-              onClick={() => handlerPlaylist(item)}
-              className={`h-65 w-72  flex flex-col  items-center justify-center pl-[14px] pr-[14px]`}
-            >
-              <div className="img_chill h-full w-full flex justify-start items-start  ">
-                <img
-                  src={item?.thumbnailM}
-                  className="cursor-pointer h-[95%] rounded-lg w-[100%] "
-                  alt=""
-                />
-              </div>
-              <div className="content_chill h-45 w-full mt-2">
-                <p className="text-[12px] w-full h-8 font-sans text-[#000]  text-left">
-                  {item?.sortDescription.length > 50
-                    ? `${item?.sortDescription.slice(0, 50)}...`
-                    : item?.sortDescription}
-                </p>
-                <span className="text-[12px] w-full  font-sans  text-[#6C6D6D] text-left">
-                  {item?.artistsNames?.length > 50
-                    ? `${item?.artistsNames?.slice(0, 50)}...`
-                    : item?.artistsNames}
-                </span>
-              </div>
-            </div>
-          );
+          return <SelectionItems key={item.encodeId} items={item} />;
         })}
       </div>
     </>

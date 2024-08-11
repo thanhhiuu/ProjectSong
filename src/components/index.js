@@ -9,3 +9,5 @@ export { default as SelectionHome } from './SelectionHome';
 
 export { default as Newrelease } from './NewRelease';
 export { default as SongItems } from './SongItem';
+export { default as SelectionItems } from './SelectionItems';
+export { default as Chart } from './Chart';

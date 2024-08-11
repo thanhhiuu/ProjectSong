@@ -22,7 +22,9 @@ import PauseIcon from '@mui/icons-material/Pause';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import QueueMusicIcon from '@mui/icons-material/QueueMusic';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+
 const coins = {
   LibraryMusicIcon: <LibraryMusicIcon style={{ fontSize: '20px' }} />,
   Bubble: <BubbleChartIcon style={{ fontSize: '20px' }} />,
@@ -38,6 +40,7 @@ const coins = {
     <PlayArrowIcon style={{ color: '#fff', fontSize: '46px' }} />
   ),
   FavoriteBorderIcon: <FavoriteBorderIcon style={{ fontSize: '16px' }} />,
+  Heaths: <FavoriteBorderIcon style={{ fontSize: '25px' }} />,
   NotesIcon: <NotesIcon style={{ fontSize: '22px' }} />,
   RepeatIcon: <RepeatIcon style={{ fontSize: '22px' }} />,
   SkipNextIcon: <SkipNextIcon style={{ fontSize: '22px' }} />,
@@ -59,6 +62,17 @@ const coins = {
   QueueMusicIcon: <QueueMusicIcon />,
   WorkspacePremiumIcon: (
     <WorkspacePremiumIcon style={{ fontSize: '22px', color: '#FFCC00' }} />
+  ),
+  MoreHorizIcon: <MoreHorizIcon style={{ fontSize: '30px' }} />,
+  Players: (
+    <PlayArrowIcon
+      style={{
+        fontSize: '60px',
+        border: '1px solid #fff',
+        borderRadius: '100px',
+        padding: '10px',
+      }}
+    />
   ),
 };
 

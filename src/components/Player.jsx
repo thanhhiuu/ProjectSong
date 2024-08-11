@@ -25,7 +25,6 @@ const Player = ({ setIsOnOff }) => {
     const fetchData = async () => {
       try {
         setIsLoadingSource(true);
-        console.log(isLoadingSource, ' loding');
         const [fechApiSong, fechApiInfoSong, fechApiDetalPlaylist] =
           await Promise.all([
             apis.getSongID(currentSongId),

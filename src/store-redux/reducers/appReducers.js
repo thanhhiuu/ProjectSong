@@ -10,6 +10,7 @@ const initState = {
   weekchart: [],
   halbum: [],
   liveradio: [],
+  zingcharts: [],
 };
 const appReducers = (state = initState, action) => {
   switch (action.type) {
@@ -41,6 +42,9 @@ const appReducers = (state = initState, action) => {
         liveradio:
           action.homeData?.find((item) => item.sectionId === 'hLiveRadio')
             ?.items || [],
+        zingcharts:
+          action.homeData?.find((item) => item.sectionType === 'RTChart')
+            ?.chart || [],
       };
 
     default:

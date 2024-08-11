@@ -4,7 +4,7 @@ import { Banner, Radio, WeekChart } from './index';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHome } from '../../store-redux/actions';
 import Playlist from './Playlist';
-import { Newrelease, SelectionHome } from '../../components';
+import { Chart, Newrelease, SelectionHome } from '../../components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import icons from '../../ultil/icon';
@@ -62,13 +62,16 @@ const Home = () => {
           title={title?.find((e) => e.sectionType === 'new-release')?.title}
         />
       </div>
+      <div className=" m-auto mb-8">
+        <Chart />
+      </div>
       <div className=" w-[96%] flex gap-5 justify-between m-auto  mb-8">
         {weekchart?.map((item, index) => {
           return (
             <Link
               className="  w-[96%] m-auto flex flex-1 justify-center"
               to={item?.link?.split('.')[0]}
-              key={item.Link}
+              key={index}
             >
               <div className="overflow-hidden w-[94%]">
                 <img

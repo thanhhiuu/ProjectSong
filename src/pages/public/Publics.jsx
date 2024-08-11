@@ -38,7 +38,7 @@ const publics = () => {
             ''
           )}
         </div>
-        <div className="player  h-[90px] fixed bottom-0 left-0 right-0 ">
+        <div className="player  h-[90px] fixed z-40 bottom-0 left-0 right-0 ">
           <Player setIsOnOff={setIsOnOff} />
         </div>
       </div>

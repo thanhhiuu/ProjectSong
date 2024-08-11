@@ -7,7 +7,7 @@ import '../../App.css';
 import * as actions from '../../store-redux/actions/index';
 import { Artist, List } from '../../components/index';
 import { Loading } from './LoadingPages.jsx/index';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 const Playlist = () => {
   const { currentSongId, currentPlaylist, currentPlay, currentLoading } =
     useSelector((state) => state.music);
@@ -16,7 +16,9 @@ const Playlist = () => {
   const [playlist, setPlaylist] = useState({});
   const [isRandomSong, setIsRandomSong] = useState(true);
   const { title, pid } = useParams();
+  const location = useLocation();
 
+  console.log(location.state.playLists, 'useLocation');
   useEffect(() => {
     try {
       const fechApiSong = async () => {
@@ -46,6 +48,13 @@ const Playlist = () => {
     }
   }, [currentPlay, isRandomSong, dispatch]);
 
+  useEffect(() => {
+    if (location.state.playLists) {
+      const random = Math.round(Math.random() * playlist?.song?.items?.length);
+      dispatch(actions?.setSongId(playlist?.song?.items[random]?.encodeId));
+      dispatch(actions?.setPlay(true));
+    }
+  }, [pid]);
   return (
     <>
       {currentLoading ? (

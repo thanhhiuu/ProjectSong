@@ -9,7 +9,6 @@ import '../App.css';
 
 const lists = ({ songData }) => {
   const dispatch = useDispatch();
-  console.log(songData, 'SongData');
   return (
     <>
       <div

@@ -38,7 +38,6 @@ const router = createBrowserRouter([
       { path: path.CHILL__TITLE_PID, element: <Playlist /> },
       { path: path.WEEKCHART_TITLE_PID, element: <WeekChart /> },
       { path: path.RADIO_TITLE_PID, element: <Radio /> },
-      { path: path.RADIO_TITLE_PID, element: <Radio /> },
 
       {
         path: path.LOGIN,
