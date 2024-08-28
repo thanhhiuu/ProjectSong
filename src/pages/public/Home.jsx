@@ -37,10 +37,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(actions?.setLoading(false));
 
-    setTimeout(() => {
-      dispatch(getHome());
-      dispatch(actions?.setLoading(true));
-    }, 1000);
+    dispatch(getHome());
+    dispatch(actions?.setLoading(true));
   }, []);
   // console.log(weekchart, ' weekchart');
   const [fetchDataChart, setFetchDataChart] = useState(null);
