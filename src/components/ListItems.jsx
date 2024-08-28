@@ -7,22 +7,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import icons from '../ultil/icon';
 import '../App.css';
 
-const lists = ({ songData }) => {
+const lists = ({ songData, search, style }) => {
   const dispatch = useDispatch();
+  const { currentRecent } = useSelector((state) => state.music);
   return (
     <>
       <div
-        className="flex animate-pulse  items-center cursor-pointer "
+        className="flex w-full animate-pulse items-center cursor-pointer "
         onClick={() => {
           dispatch(actions.setSongId(songData?.encodeId));
           dispatch(actions.setPlay(true));
+          dispatch(
+            actions.setRecent({
+              encodeId: songData?.encodeId,
+              thumbnailM: songData?.thumbnailM,
+              title: songData?.title,
+              artistsNames: songData?.artistsNames,
+            })
+          );
         }}
       >
-        <div className="w-[45.5%] flex gap-2 ">
+        <div
+          className={`${
+            style ? 'w-[560px] flex gap-2' : 'w-[45.5%] flex gap-2 '
+          }`}
+        >
           <div className="song_img relative w-[40px]">
             <img
               src={songData?.thumbnail}
-              className="w-[40px] h-[40px] rounded-sm"
+              className="w-[40px] h-[40px] rounded-lg"
               alt="thumbnail"
             />
             {/* {currentSongId === songData?.encodeId ? (
@@ -56,7 +69,7 @@ const lists = ({ songData }) => {
           </div>
         </div>
         <p className="text-[12px] text-[#32323D80] w-[50%]">
-          {songData?.album?.title}
+          {search ? '' : songData?.album?.title}
         </p>
         <div className="time_song text-right text-[12px] text-[#32323D80]">
           {moment.unix(songData?.duration).format('mm:ss')}

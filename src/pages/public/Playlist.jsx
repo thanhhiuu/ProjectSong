@@ -18,14 +18,13 @@ const Playlist = () => {
   const { title, pid } = useParams();
   const location = useLocation();
 
-  console.log(location.state.playLists, 'useLocation');
   useEffect(() => {
     try {
       const fechApiSong = async () => {
         dispatch(actions?.setLoading(false));
         const response = await apis.getdetailPlaylist(currentPlaylist);
 
-        console.log('Hihi ', response);
+        // console.log('Hihi ', response);
         if (response?.data.err === 0) {
           setPlaylist(response?.data?.data);
           dispatch(actions?.setLoading(true));
@@ -36,20 +35,19 @@ const Playlist = () => {
     } catch (error) {
       error;
     }
-  }, [pid, title, currentPlaylist, dispatch]);
+  }, [pid, title, currentPlaylist, dispatch, currentPlay]);
 
   useEffect(() => {
     if (currentPlay) {
       dispatch(actions.setPlay(true));
       setIsRandomSong(false);
-      console.log(1);
     } else {
       dispatch(actions.setPlay(false));
     }
   }, [currentPlay, isRandomSong, dispatch]);
 
   useEffect(() => {
-    if (location.state.playLists) {
+    if (location?.state?.playLists) {
       const random = Math.round(Math.random() * playlist?.song?.items?.length);
       dispatch(actions?.setSongId(playlist?.song?.items[random]?.encodeId));
       dispatch(actions?.setPlay(true));
@@ -106,7 +104,7 @@ const Playlist = () => {
                     onClick={() =>
                       playlist?.song?.items?.some(
                         (e) => e.encodeId === currentSongId
-                      ) && currentPlay
+                      )
                         ? dispatch(actions.setPlay(false))
                         : dispatch(actions.setPlay(true))
                     }
@@ -180,6 +178,7 @@ const Playlist = () => {
             </div>
             <Artist nameArtist={playlist?.artists} />
           </div>
+          <div className="mb-60 "></div>
         </>
       ) : (
         <Loading />

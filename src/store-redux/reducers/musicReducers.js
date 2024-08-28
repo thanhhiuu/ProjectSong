@@ -5,6 +5,10 @@ const initState = {
   currentPlay: false,
   currentPlaylist: null,
   currentLoading: true,
+  currentRecent: [],
+  searchSong: [],
+  keywords: '',
+  countryWeekchart: '',
 };
 const musicReducer = (state = initState, action) => {
   switch (action.type) {
@@ -28,6 +32,29 @@ const musicReducer = (state = initState, action) => {
       return {
         ...state,
         currentLoading: action?.loading,
+      };
+    case actionTypers.RECENT_SONG:
+      return {
+        ...state,
+        currentRecent: action?.recent
+          ? [action.recent, ...state.currentRecent.slice(0, 20)]
+          : state.currentRecent,
+      };
+    case actionTypers.SEARCH:
+      return {
+        ...state,
+        searchSong: action?.data,
+        keywords: action?.keyword,
+      };
+    case actionTypers.SEARCH_SONG:
+      return {
+        ...state,
+        searchSongArtist: action?.data,
+      };
+    case actionTypers.COUNTRY:
+      return {
+        ...state,
+        countryWeekchart: action?.country,
       };
     default:
       return state;

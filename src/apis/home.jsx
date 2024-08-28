@@ -8,7 +8,22 @@ export const getHome = () =>
         url: '/home',
         method: 'get',
       });
-      console.log(response);
+      // console.log(response);
+      resolve(response);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
+export const getHomeChart = () =>
+  // eslint-disable-next-line no-async-promise-executor
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await instance({
+        url: '/charthome',
+        method: 'get',
+      });
+      // console.log(response);
       resolve(response);
     } catch (error) {
       reject(error);

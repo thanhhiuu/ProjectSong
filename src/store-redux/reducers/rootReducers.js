@@ -19,6 +19,7 @@ const musicConfig = {
     'currentPlaylist',
     'currentPlay',
     'currentLoading',
+    'currentRecent',
   ],
 };
 const rootReducers = combineReducers({

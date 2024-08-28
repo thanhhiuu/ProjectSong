@@ -13,7 +13,7 @@ const newRelease = ({ title }) => {
   const [isActive, setIsActive] = useState(0);
   const [songs, setSongs] = useState([]);
   const dispatch = useDispatch();
-  console.log(newrelease, 'llll');
+  // console.log(newrelease, 'llll');
   useEffect(() => {
     dispatch(actions?.setLoading(false));
     isActive === 0

@@ -41,7 +41,7 @@ const Chill = ({ data, title }) => {
       </div>
 
       <div className="w-full h-full flex  items-center mt-5 justify-center">
-        {data?.slice(currentIndex, currentIndex + 5).map((item) => {
+        {data.slice(currentIndex, currentIndex + 5).map((item) => {
           return <SelectionItems key={item.encodeId} items={item} />;
         })}
       </div>

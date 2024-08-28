@@ -26,11 +26,19 @@ const Banners = () => {
     if (item?.type === 4) {
       dispatch(actions.setPlaylist(item?.encodeId));
       const path = item?.link?.split('.')[0];
-      console.log(path, ' bannerPath');
+      // console.log(path, ' bannerPath');
       navigate(path);
     } else if (item?.type === 1) {
       dispatch(actions.setSongId(item?.encodeId));
       dispatch(actions.setPlay(true));
+      // dispatch(
+      //   actions.setRecent({
+      //     encodeId: songData?.encodeId,
+      //     thumbnailM: songData?.thumbnailM,
+      //     title: songData?.title,
+      //     artistsNames: songData?.artistsNames,
+      //   })
+      // );
     }
   };
   return (

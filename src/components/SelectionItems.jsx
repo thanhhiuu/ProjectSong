@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../store-redux/actions';
 import { useNavigate } from 'react-router-dom';
 import icons from '../ultil/icon';
-const SelectionItems = ({ items }) => {
+const SelectionItems = ({ items, style }) => {
   const [isHover, setIsHover] = useState(false);
   const isScale = useRef();
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const SelectionItems = ({ items }) => {
   const handlerPlaylist = (item) => {
     dispatch(actions.setPlaylist(item?.encodeId));
     const path = item?.link?.split('.')[0];
-    console.log(path, 'oathhh');
+    // console.log(path, 'oathhh');
     navigate(path, { state: { playLists: false } });
   };
   const handlerEnter = (e) => {
@@ -31,10 +31,10 @@ const SelectionItems = ({ items }) => {
       <div
         key={items?.encodeId}
         onClick={() => handlerPlaylist(items)}
-        className={`h-65 w-72  flex flex-col  items-center justify-center pl-[14px] pr-[14px]`}
+        className={`h-65  flex flex-col  items-center justify-center pl-[14px] pr-[14px]`}
       >
         <div
-          className="img_chill h-full w-full flex justify-start overflow-hidden items-start relative"
+          className="img_chill h-full w-full flex justify-start overflow-hidden items-start relative "
           onMouseEnter={handlerEnter}
           onMouseLeave={handlerLeave}
         >
@@ -61,14 +61,18 @@ const SelectionItems = ({ items }) => {
           <img
             ref={isScale}
             src={items?.thumbnailM}
-            className="cursor-pointer object-cover h-[95%] rounded-lg w-[100%] "
+            className="cursor-pointer object-cover h-[95%] rounded-lg w-[100%]"
             alt=""
           />
         </div>
         <div className="content_chill h-45 w-full mt-2">
-          <p className="text-[12px] w-full h-8 font-sans text-[#000]  text-left">
-            {items?.sortDescription.length > 50
-              ? `${items?.sortDescription.slice(0, 50)}...`
+          <p className="text-[12px] w-full  font-sans text-[#000]  text-left">
+            {style
+              ? items?.title?.length > 30
+                ? `${items?.title?.slice(0, 30)}...`
+                : items?.title
+              : items?.sortDescription?.length > 50
+              ? `${items?.sortDescription?.slice(0, 50)}...`
               : items?.sortDescription}
           </p>
           <span className="text-[12px] w-full  font-sans  text-[#6C6D6D] text-left">

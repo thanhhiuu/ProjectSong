@@ -9,22 +9,22 @@ import {
 } from '../../components/index.js';
 
 const publics = () => {
-  const [isOnOff, setIsOnOff] = useState(false);
+  const [isOnOff, setIsOnOff] = useState(true);
   return (
     <>
       <div className=" w-full h-screen flex flex-col relative ">
-        <div className="flex flex-auto shrink w-full h-full ">
-          <div className={`bg-[#ecf6f6] w-[240px] h-full flex-none  `}>
+        <div className="flex w-full flex-auto h-full ">
+          <div className={`bg-[#DDE4E4] w-[240px] h-full flex-none  `}>
             <SildebarLeft />
           </div>
           <div
-            className={`bg-[#ced9d9] flex-auto overflow-y-auto h-full mb-[150%]  scrollbar-hide   `}
+            className={`bg-[#ced9d9] w-[50%] flex-auto flex flex-col h-full mb-[150%] `}
           >
-            <div className="w-full 2xl:h-64">
-              {' '}
+            <div className=" w-full flex-none flex items-center ">
               <Header />
             </div>
-            <div className="w-full 2xl:h-64">
+
+            <div className="w-full flex-auto  overflow-y-auto scrollbar-hide ">
               <Outlet />
             </div>
           </div>

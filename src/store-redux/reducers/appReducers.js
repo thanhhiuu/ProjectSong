@@ -11,11 +11,12 @@ const initState = {
   halbum: [],
   liveradio: [],
   zingcharts: [],
+  newreleases: [],
 };
 const appReducers = (state = initState, action) => {
   switch (action.type) {
     case actionTypers.GET_HOME:
-      console.log(action, 'action');
+      // console.log(action, 'action');
       return {
         ...state,
         banner:
@@ -43,8 +44,10 @@ const appReducers = (state = initState, action) => {
           action.homeData?.find((item) => item.sectionId === 'hLiveRadio')
             ?.items || [],
         zingcharts:
-          action.homeData?.find((item) => item.sectionType === 'RTChart')
-            ?.chart || [],
+          action.homeData?.find((item) => item.sectionType === 'RTChart') || [],
+        newreleases:
+          action.homeData?.find((item) => item.sectionId === 'hNewrelease') ||
+          [],
       };
 
     default:

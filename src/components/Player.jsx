@@ -44,6 +44,7 @@ const Player = ({ setIsOnOff }) => {
           });
         }
         setIsLoadingSource(false);
+        // console.log(song, 'Player');
       } catch (error) {
         console.error('Error fetching song data:', error);
       }
@@ -79,33 +80,20 @@ const Player = ({ setIsOnOff }) => {
   });
 
   useEffect(() => {
-    console.log('shuffle ', isShuffles);
-    console.log('repeat ', isRepeat);
-    console.log('songs ', song?.dataPlaylist.song.items);
-    console.log('songsID ', currentSongId);
+    // console.log('shuffle ', isShuffles);
+    // console.log('repeat ', isRepeat);
+    // console.log('songs ', song?.dataPlaylist.song.items);
+    // console.log('songsID ', currentSongId);
     const handlerEndSong = async () => {
       if (isShuffles) {
         await handleShuffle();
-        console.log('1');
+        // console.log('1');
       } else if (isRepeat === 2) {
         if (song?.dataPlaylist?.song?.items) {
-          const currentIndex = song?.dataPlaylist?.song.items.findIndex(
-            (element) => element.encodeId === currentSongId
-          );
-          if (
-            currentIndex !== -1 &&
-            currentIndex < song?.dataPlaylist.song.items.length - 1
-          ) {
-            const nextSong = await song.dataPlaylist.song.items[
-              currentIndex + 1
-            ];
-            dispatch(actions.setSongId(nextSong?.encodeId));
-            dispatch(actions.setPlay(true));
-
-            await audioRef.current.play();
-          }
+          await handleNext();
         }
-        console.log('2');
+
+        // console.log('2');
       } else if (isRepeat === 1) {
         audioRef.current.currentTime = 0;
         await audioRef.current.play();
@@ -150,22 +138,22 @@ const Player = ({ setIsOnOff }) => {
       audioRef.current.pause();
     } else {
       dispatch(actions.setPlay(true));
-      try {
-        if (audioRef.current.readyState >= 2) {
-          await audioRef.current.play();
-        } else {
-          audioRef.current.addEventListener(
-            'canplay',
-            async () => {
-              await audioRef.current.play();
-            },
-            { once: true }
-          );
-        }
-      } catch (error) {
-        console.error('Failed to play audio:', error);
-        dispatch(actions.setPlay(false));
-      }
+      // try {
+      //   if (audioRef.current.readyState >= 2) {
+      //     await audioRef.current.play();
+      //   } else {
+      //     audioRef.current.addEventListener(
+      //       'canplay',
+      //       async () => {
+      //         await audioRef.current.play();
+      //       },
+      //       { once: true }
+      //     );
+      //   }
+      // } catch (error) {
+      //   console.error('Failed to play audio:', error);
+      //   dispatch(actions.setPlay(false));
+      // }
     }
   };
 
@@ -200,7 +188,14 @@ const Player = ({ setIsOnOff }) => {
         const nextSong = song.dataPlaylist.song.items[currentIndex + 1];
         dispatch(actions.setSongId(nextSong?.encodeId));
         dispatch(actions.setPlay(true));
-
+        dispatch(
+          actions.setRecent({
+            encodeId: song.dataInfoSong.encodeId,
+            thumbnailM: song.dataInfoSong.thumbnailM,
+            title: song.dataInfoSong.title,
+            artistsNames: song.dataInfoSong.artistsNames,
+          })
+        );
         try {
           await audioRef.current.play();
         } catch (error) {
@@ -222,7 +217,14 @@ const Player = ({ setIsOnOff }) => {
 
         dispatch(actions.setSongId(prevSong.encodeId));
         dispatch(actions.setPlay(true));
-
+        dispatch(
+          actions.setRecent({
+            encodeId: song.dataInfoSong.encodeId,
+            thumbnailM: song.dataInfoSong.thumbnailM,
+            title: song.dataInfoSong.title,
+            artistsNames: song.dataInfoSong.artistsNames,
+          })
+        );
         try {
           await new Promise((resolve) => {
             const checkReadyState = () => {
@@ -244,7 +246,6 @@ const Player = ({ setIsOnOff }) => {
     }
   };
 
-  // Lấy ra phần trăm của thanh kéo range thông qua số thời gian của bài hát có được
   const handleProgressChange = (e) => {
     const newProgress = e.target.value;
     setProgress(newProgress);
@@ -258,6 +259,13 @@ const Player = ({ setIsOnOff }) => {
       audioRef.current.volume = volume / 100;
     }
   }, [volume]);
+  // useEffect(() => {
+  //   audioRef.current.addEventListener('keydown', (e) => {
+  //     if (e.key === 'Enter') {
+  //       dispatch(actions.setPlay(true));
+  //     }
+  //   });
+  // }, [audioRef]);
 
   return (
     <div className="container_player w-screen bg-[#c0d8d8] h-[90px]">
@@ -372,7 +380,7 @@ const Player = ({ setIsOnOff }) => {
             <div>
               {!moment.unix(song?.dataInfoSong?.duration).format('mm:ss')
                 ? '00:00'
-                : moment.unix(audioRef?.current?.currentTime).format('mm:ss')}
+                : moment.unix(song?.dataInfoSong?.duration).format('mm:ss')}
             </div>
           </div>
         </div>

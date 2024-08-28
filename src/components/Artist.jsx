@@ -5,12 +5,12 @@ import ArtistItems from './ArtistItems';
 const Artist = ({ nameArtist }) => {
   return (
     <>
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex justify-center items-center gap-4 ">
         {nameArtist?.map((item) => {
           return (
             <div
               key={item?.id}
-              className="information_artist flex justify-between "
+              className="information_artist flex justify-between  "
             >
               <ArtistItems artist={item} />
             </div>

@@ -5,6 +5,10 @@ const actionTypers = {
   PLAY: 'PLAY',
   LOADING: 'LOADING',
   PLAYLIST: 'PLAYLIST',
+  RECENT_SONG: 'RECENT_SONG',
+  SEARCH: 'SEARCH',
+  SEARCH_SONG: 'SEARCH_SONG',
+  COUNTRY: 'COUNTRY',
 };
 
 export default actionTypers;
