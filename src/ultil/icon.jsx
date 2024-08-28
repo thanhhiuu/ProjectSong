@@ -35,6 +35,8 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import HistoryIcon from '@mui/icons-material/History';
 import ListIcon from '@mui/icons-material/List';
 import AlbumIcon from '@mui/icons-material/Album';
+import React from 'react';
+
 const coins = {
   ListIcon: <ListIcon style={{ fontSize: '20px', color: '#FA702E' }} />,
   AlbumIcon: <AlbumIcon style={{ fontSize: '20px', color: '#FF56B3' }} />,
