@@ -106,12 +106,12 @@ const Chart = ({ display }) => {
                    <div class="" style="backgroundColor: rgba(225, 225, 225, 225, 0.3);">
                     <div style="margin-left: 10px; color: #fff;">${
                       item?.title.length > 15
-                        ? item?.title.slice(0, 15) + '...'
+                        ? item?.title?.slice(0, 15) + '...'
                         : item?.title
                     }</div>
                     <div style="margin-left: 10px;  color: #fff;">${
-                      item?.artistsNames.length > 15
-                        ? item?.artistsNames.slice(0, 15) + '...'
+                      item?.artistsNames?.length > 15
+                        ? item?.artistsNames?.slice(0, 15) + '...'
                         : item?.artistsNames
                     }</div>
                     </div>
@@ -241,8 +241,10 @@ const Chart = ({ display }) => {
                     />
                   </div>
                   <div className="w-[100%]">
-                    <p className="text-[#C3B5CC] w-full">{item.title}</p>
-                    <p className="text-[#C3B5CC] w-full">{item.artistsNames}</p>
+                    <p className="text-[#C3B5CC] w-full">{item?.title}</p>
+                    <p className="text-[#C3B5CC] w-full">
+                      {item?.artistsNames}
+                    </p>
                   </div>
                 </div>
                 <div className="text-[#fff] px-3 text-[16px] font-bold">
