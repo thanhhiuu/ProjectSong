@@ -217,8 +217,8 @@ const Home = () => {
                       </div>
                       <div className="content_chill h-30 w-full mt-2">
                         <p className="text-[12px] w-full h-4 font-sans text-[#000] text-left">
-                          {item?.title.length > 30
-                            ? `${item?.title.slice(0, 30)}...`
+                          {item?.title?.length > 30
+                            ? `${item?.title?.slice(0, 30)}...`
                             : item?.title}
                         </p>
                         <span className="text-[12px] w-full  font-sans text-[#6C6D6D] text-left">
