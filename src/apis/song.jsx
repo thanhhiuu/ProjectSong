@@ -1,10 +1,10 @@
-import instance from '../axios';
+import axios from '../axios';
 
 export const getSongID = (sid) =>
   // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
-      const response = await instance({
+      const response = await axios({
         url: '/song',
         method: 'get',
         params: { id: sid },
@@ -18,7 +18,7 @@ export const getSongInfo = (sid) =>
   // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
-      const response = await instance({
+      const response = await axios({
         url: '/infosong',
         method: 'get',
         params: { id: sid },
@@ -32,7 +32,7 @@ export const getdetailPlaylist = (sid) =>
   // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
-      const response = await instance({
+      const response = await axios({
         url: '/detailplaylist',
         method: 'get',
         params: { id: sid },
@@ -46,7 +46,7 @@ export const search = (keyword) =>
   // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
-      const response = await instance({
+      const response = await axios({
         url: `/search`,
         method: 'get',
         params: { keyword: keyword },
@@ -60,7 +60,7 @@ export const searchSong = (pid) =>
   // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
-      const response = await instance({
+      const response = await axios({
         url: `/artistsong`,
         method: 'get',
         params: { id: pid, page: 1, count: 100 },
@@ -74,7 +74,7 @@ export const searchPlaylist = (name) =>
   // eslint-disable-next-line no-async-promise-executor
   new Promise(async (resolve, reject) => {
     try {
-      const response = await instance({
+      const response = await axios({
         url: `/artist`,
         method: 'get',
         params: { name: name },

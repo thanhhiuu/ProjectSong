@@ -39,10 +39,10 @@ const Playlist = () => {
 
   useEffect(() => {
     if (currentPlay) {
-      dispatch(actions.setPlay(true));
+      dispatch(actions?.setPlay(true));
       setIsRandomSong(false);
     } else {
-      dispatch(actions.setPlay(false));
+      dispatch(actions?.setPlay(false));
     }
   }, [currentPlay, isRandomSong, dispatch]);
 

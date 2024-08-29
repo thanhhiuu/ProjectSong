@@ -15,8 +15,8 @@ const lists = ({ songData, search, style }) => {
       <div
         className="flex w-full animate-pulse items-center cursor-pointer "
         onClick={() => {
-          dispatch(actions.setSongId(songData?.encodeId));
-          dispatch(actions.setPlay(true));
+          dispatch(actions?.setSongId(songData?.encodeId));
+          dispatch(actions?.setPlay(true));
           dispatch(
             actions.setRecent({
               encodeId: songData?.encodeId,

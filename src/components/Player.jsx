@@ -27,9 +27,9 @@ const Player = ({ setIsOnOff }) => {
         setIsLoadingSource(true);
         const [fechApiSong, fechApiInfoSong, fechApiDetalPlaylist] =
           await Promise.all([
-            apis.getSongID(currentSongId),
-            apis.getSongInfo(currentSongId),
-            apis.getdetailPlaylist(currentPlaylist),
+            apis?.getSongID(currentSongId),
+            apis?.getSongInfo(currentSongId),
+            apis?.getdetailPlaylist(currentPlaylist),
           ]);
 
         if (
@@ -50,8 +50,10 @@ const Player = ({ setIsOnOff }) => {
       }
     };
     fetchData();
-  }, [currentSongId]);
-
+    console.log(song, 'song');
+  }, [currentPlaylist, currentSongId]);
+  console.log(song, ' Song');
+  console.log(currentSongId, ' currentSongId');
   useEffect(() => {
     const handlePlayback = async () => {
       try {

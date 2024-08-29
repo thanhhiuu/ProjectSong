@@ -15,8 +15,8 @@ const Items = ({ data }) => {
           onClick={() => {
             data?.top?.objectType === 'artist'
               ? ''
-              : dispatch(actions.setSongId(data?.encodeId)),
-              dispatch(actions.setPlay(true)),
+              : dispatch(actions?.setSongId(data?.encodeId)),
+              dispatch(actions?.setPlay(true)),
               dispatch(
                 actions.setRecent({
                   encodeId: data?.encodeId,
