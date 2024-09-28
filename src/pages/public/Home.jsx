@@ -36,9 +36,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(actions?.setLoading(false));
-
     dispatch(getHome());
-    dispatch(actions?.setLoading(true));
   }, []);
   // console.log(weekchart, ' weekchart');
   const [fetchDataChart, setFetchDataChart] = useState(null);
@@ -61,7 +59,9 @@ const Home = () => {
   useEffect(() => {
     try {
       const fetchDataChart = async () => {
+        dispatch(actions?.setLoading(false));
         const response = await apis.getHomeChart();
+        dispatch(actions?.setLoading(true));
         setFetchDataChart({
           dataNewRelease: response?.data?.data,
         });
